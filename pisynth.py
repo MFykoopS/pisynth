@@ -1,11 +1,16 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 from pyo import *
 import pygame
 from pygame.locals import *
 from time import sleep
 
 running = True
-s = Server()
-s.setOutputDevice(7)
+s = Server(duplex = 0)
+# Ich könnte versuchen, das 'audio'-Argument auf "offline" oder "offline_nb"
+# zu setzen und den output einfach auf aplay zu pipen. aplay hat auf dem Pi
+# funktioniert...
+s.setOutputDevice(7) # muss angepasst werden!
 s.boot()
 pygame.init()
 window = pygame.display.set_mode((100, 100))
