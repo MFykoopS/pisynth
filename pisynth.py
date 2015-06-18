@@ -21,34 +21,35 @@ dec = .2
 sus = .5
 rel = .1
 f = Adsr(attack=att, decay=dec, sustain=sus, release=rel)
-a = Sine(mul=f).out()
+a = Sine(mul=f)
+b = a.mix(2).out()
 
 while running:
 	for event in pygame.event.get():
 		if (event.type == KEYDOWN):
 			if event.key == K_a:
-				a.setFreq(261.63)
+				a.setFreq([261.63,261.63])
 				f.play()
 			if event.key == K_s:
-				a.setFreq(293.66)
+				a.setFreq([293.66,293.66])
 				f.play()
 			if event.key == K_d:
-				a.setFreq(329.63)
+				a.setFreq([329.63,329.63])
 				f.play()
 			if event.key == K_f:
-				a.setFreq(349.23)
+				a.setFreq([349.23,349.23])
 				f.play()
 			if event.key == K_g:
-				a.setFreq(392.00)
+				a.setFreq([392.00,392.00])
 				f.play()
 			if event.key == K_h:
-				a.setFreq(440.00)
+				a.setFreq([440.00,440.00])
 				f.play()
 			if event.key == K_j:
-				a.setFreq(493.88)
+				a.setFreq([493.88,493.88])
 				f.play()
 			if event.key == K_k:
-				a.setFreq(523.25)
+				a.setFreq([523.25,523.25])
 				f.play()
 			if event.key == K_UP:
 				if pygame.key.get_mods() & KMOD_SHIFT:
