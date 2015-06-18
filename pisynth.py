@@ -23,6 +23,10 @@ b = a.mix(2).out()
 while running:
 	for event in pygame.event.get():
 		if (event.type == KEYDOWN):
+                        if pygame.key.get_mods() & KMOD_SHIFT:
+                                mult = 10
+                        else:
+                                mult = 1
 			if event.key == K_a:
 				a.setFreq([261.63,261.63])
 				f.play()
@@ -47,11 +51,7 @@ while running:
 			elif event.key == K_k:
 				a.setFreq([523.25,523.25])
 				f.play()
-                        if pygame.key.get_mods() & KMOD_SHIFT:
-                                mult = 10
-                        else:
-                                mult = 1
-			if event.key == K_UP:
+			elif event.key == K_UP:
 				att += .01*mult
 				f.setAttack(att)
 				print "Attack:", att
@@ -65,7 +65,21 @@ while running:
 			elif (event.key == K_0 and att > 0):
 				att = 0
 				print "Attack:", att
-			if event.key == K_ESCAPE:
+			elif event.key == K_RIGHT:
+				rel += .01*mult
+				f.setRelease(rel)
+				print "Release:", rel
+			elif (event.key == K_LEFT and rel > 0):
+				if rel <= .01*mult:
+					rel = 0
+				else:
+					rel -= .01*mult
+				f.setRelease(rel)
+				print "Release:", rel
+			# elif (event.key == K_0 and rel > 0):
+			# 	rel = 0
+			# 	print "Release:", rel
+			elif event.key == K_ESCAPE:
 				running = False
 		elif (event.type == KEYUP): # this is problematic!!
 		 	f.stop()
